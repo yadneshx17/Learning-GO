@@ -16,6 +16,8 @@ type container struct {
 }
 
 func main() {
+	// When creating structs with literals, we have to initialize the embedding explicitly; 
+	// here the embedded type serves as the field name.
 	co := container{
 		base: base{
 			num: 1,
