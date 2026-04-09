@@ -28,7 +28,7 @@ func main() {
 			fmt.Println("received", msg1)
 		case msg2 := <-c2:
 			fmt.Println("received", msg2)
-		// default makes it non blocking and
+		// default makes it non blocking and if it was not there then this will wait for either of channel to send something.
 		default:
 			fmt.Println("no data")
 		}

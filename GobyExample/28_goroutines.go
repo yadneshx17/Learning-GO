@@ -21,13 +21,16 @@ func main() {
 	// synchronous - blocking call
 	f("direct")
 	fmt.Println("After this output of goroutines.")
+	fmt.Println("--------------------------------")
 
 	// thsi goroutine will execute concurrent to above func call.
 	go f("goroutine")
 
 	// these two func calls are running async in separate goroutine now.
 	go func(msg string) {
-		fmt.Println(msg)
+		for i := range 3{
+			fmt.Println(msg, ":", i)
+		}
 	}("going")
 
 	time.Sleep(time.Second)

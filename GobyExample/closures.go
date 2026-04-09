@@ -6,7 +6,7 @@ import "fmt"
 func intSeq() func() int {
 	i := 0
 	return func() int {
-		i++
+		i++ // references a variable from outside its body, 	
 		return i
 	}
 }
@@ -19,6 +19,6 @@ func main() {
 	fmt.Println(nextInt())
 	fmt.Println(nextInt())
 
-	newInts := intSeq()
-	fmt.Println(newInts())
+	// newInts := intSeq()
+	// fmt.Println(newInts())
 }
