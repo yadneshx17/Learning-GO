@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func worker(id int) {
+func workerw(id int) {
 	fmt.Printf("Worker %d starting\n", id)
 	time.Sleep(time.Second) // simulates expensive task
 	fmt.Printf("Worker %d done\n", id)
@@ -22,7 +22,7 @@ func main() {
 		// launch several goroutines using WaitGroup.Go
 		wg.Go(func() {
 			// to pass waitgroup explicitly into function, it should be by pointer.
-			worker(i)
+			workerw(i)
 		})
 	}
 

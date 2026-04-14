@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+// & (Address-of Operator): Placed before a variable to generate a pointer to its memory location.
+// * (Dereference Operator): Denotes the underlying value at a memory address or is used to declare a pointer type (e.g., *int)
+
 func zeroval(ival int) {
 	ival = 0
 }

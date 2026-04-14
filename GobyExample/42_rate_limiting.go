@@ -8,23 +8,24 @@ import (
 
 func main() {
 
-	// requests := make(chan int, 5)
+	requests := make(chan int, 5)
 
-	// for i := 1; i <=5; i++ {
-	// 	requests <- i
-	// }
-	// close(requests)
+	for i := 1; i <= 5; i++ {
+		requests <- i
+	}
+	close(requests) // signals that channel is closed and no more reads from it. end-of-stream signal
 
-	// // this limiter channel will receive a value every 200 milliseconds.
-	// limiter := time.Tick(200 * time.Millisecond)
+	// this limiter channel will receive a value every 200 milliseconds.
+	limiter := time.Tick(200 * time.Millisecond)
 
-	// for req := range requests {
-	// 	// By blocking on a receive from the limiter channel before serving
-	// 	// each request, we limit ourselves to 1 request every 200 milliseconds.
-	// 	<- limiter
-	// 	fmt.Println("request", req, time.Now())
-	// }
-
+	for req := range requests {
+		// By blocking on a receive from the limiter channel before serving
+		// each request, we limit ourselves to 1 request every 2000 milliseconds.
+		<-limiter
+		fmt.Println("request", req, time.Now())
+	}
+	fmt.Println()
+	
 	// This burstyLimiter channel will allow bursts of up to 3 events.
 	burstyLimiter := make(chan time.Time, 3)
 
@@ -33,7 +34,7 @@ func main() {
 	}
 
 	go func() {
-		for t := range time.Tick(200 * time.Millisecond) {
+		for t := range time.Tick(2000 * time.Millisecond) {
 			burstyLimiter <- t
 		}
 	}()
