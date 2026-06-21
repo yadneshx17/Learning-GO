@@ -27,7 +27,7 @@ func main() {
 	// send a value into a channel.
 	go func() { messages <- "ping" }()
 
-	// receives a value from channel\
+	// receives a value from channel
 	// msg gets value from messages channel
 	// which sent by the anon function.
 	msg := <-messages
