@@ -1,4 +1,4 @@
-// Anonymous functions are useful when you want to define a function inline without having to name it.
+ // Anonymous functions are useful when you want to define a function inline without having to name it.
 package main
 
 import "fmt"
